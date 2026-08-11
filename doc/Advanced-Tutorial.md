@@ -173,7 +173,7 @@ Here are the options to specify the detail of PartitionFinder algorithm:
 | Option       | Description                                                            |
 | ------------ | ---------------------------------------------------------------------- |
 | `--merge`    | Specify either `rcluster` or `greedy` algorithm. *DEFAULT: `rcluster`* |
-| `--rcluster` | Specify the percentage of top partition merging schemes. *DEFAULT: 10* |
+| `--rcluster` | Specify the percentage of most similar candidate partition pairs retained for merging at each iteration (relaxed clustering algorithm only). *DEFAULT: 10* |
 | `-merit`       | Specify either `mAIC`, `AIC`,`AICc` or  `BIC` for partition merging criterion. *DEFAULT: `mAIC`*                                                                       |
 
 Ultrafast bootstrapping with partition model
