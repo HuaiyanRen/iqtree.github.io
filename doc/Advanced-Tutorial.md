@@ -172,9 +172,10 @@ This implementation includes a greedy algorithm ([Lanfear et al., 2012]) that su
 Here are the options to specify the detail of PartitionFinder algorithm:
 | Option       | Description                                                            |
 | ------------ | ---------------------------------------------------------------------- |
+| `-merit`       | Specify either `mAIC`, `AIC`,`AICc` or  `BIC` for partition merging criterion. *DEFAULT: `mAIC`*                                                                       |
 | `--merge`    | Specify either `rcluster` or `greedy` algorithm. *DEFAULT: `rcluster`* |
 | `--rcluster` | Specify the percentage of most similar candidate partition pairs retained for merging at each iteration (relaxed clustering algorithm only). *DEFAULT: 10* |
-| `-merit`       | Specify either `mAIC`, `AIC`,`AICc` or  `BIC` for partition merging criterion. *DEFAULT: `mAIC`*                                                                       |
+
 
 Ultrafast bootstrapping with partition model
 --------------------------------------------
