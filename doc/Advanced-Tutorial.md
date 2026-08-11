@@ -143,8 +143,7 @@ Choosing the right partitioning scheme
 --------------------------------------
 <div class="hline"></div>
 
-ModelFinder implements a greedy strategy ([Lanfear et al., 2012]) that starts with the full partition model and subsequentially
-merges two genes until the model fit does not increase any further:
+ModelFinder integrates the PartitionFinder algorithm ([Lanfear et al., 2012]) that starts with the full partition model and subsequently merges two partition subsets until the model fit does not increase any further: 
 
     iqtree -s example.phy -p example.nex -m MFP+MERGE
     # for version 1.x change -p to -spp
@@ -166,16 +165,16 @@ To resemble PartitionFinder and save time:
     iqtree -s example.phy -p example.nex -m TESTMERGEONLY
     # for version 1.x change -p to -spp
 
+This implementation includes a greedy algorithm ([Lanfear et al., 2012]) that subsequentially merges a single pair of subsets per iteration, and a *relaxed hierarchical clustering algorithm* (default; [Lanfear et al., 2014]) that merges multiple pairs of subsets per iteration to reduce the computational burden. Starting with version 3.1.3, PartitionFinder by default applies marginal Akaike Information Criterion (mAIC; [Susko et al., 2026]) as the criterion for partition merging. If you use PartitionFinder-mAIC in a publication, please cite:
 
-To reduce the computational burden IQ-TREE implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014]), which is invoked via `-rcluster` option:
+> TBD
 
-    iqtree -s example.phy -p example.nex -m MF+MERGE -rcluster 10
-    # for version 1.x change -p to -spp
-
-
-to only examine the top 10% partition merging schemes (similar to the `--rcluster-percent 10` option in PartitionFinder).
-
-
+Here are the options to specify the detail of PartitionFinder algorithm:
+| Option       | Description                                                            |
+| ------------ | ---------------------------------------------------------------------- |
+| `--merge`    | Specify either `rcluster` or `greedy` algorithm. *DEFAULT: `rcluster`* |
+| `--rcluster` | Specify the percentage of top partition merging schemes. *DEFAULT: 10* |
+| `-merit`       | Specify either `mAIC`, `AIC`,`AICc` or  `BIC` for partition merging criterion. *DEFAULT: `mAIC`*                                                                       |
 
 Ultrafast bootstrapping with partition model
 --------------------------------------------
@@ -587,6 +586,7 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Kishino and Hasegawa, 1989]: https://doi.org/10.1007/BF02100115
 [Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
 [Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
+[Susko et al., 2026]: https://doi.org/10.1093/sysbio/syag013
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Nei et al., 2001]: https://doi.org/10.1073/pnas.051611498
 [Seo et al., 2005]: https://doi.org/10.1073/pnas.0408313102
