@@ -165,17 +165,27 @@ To resemble PartitionFinder and save time:
     iqtree -s example.phy -p example.nex -m TESTMERGEONLY
     # for version 1.x change -p to -spp
 
-This implementation includes a greedy algorithm ([Lanfear et al., 2012]) that subsequentially merges a single pair of subsets per iteration, and a *relaxed hierarchical clustering algorithm* (default; [Lanfear et al., 2014]) that merges multiple pairs of subsets per iteration to reduce the computational burden. Starting with version 3.1.3, PartitionFinder by default applies marginal Akaike Information Criterion (mAIC; [Susko et al., 2026]) as the criterion for partition merging. If you use PartitionFinder-mAIC in a publication, please cite:
-
+Starting with version 3.1.3, PartitionFinder by default applies the marginal Akaike Information Criterion (mAIC; [Susko et al., 2026]) as the criterion for partition merging. If you use PartitionFinder-mAIC in a publication, please cite:
 > TBD
 
-Here are the options to specify the detail of PartitionFinder algorithm:
-| Option       | Description                                                            |
-| ------------ | ---------------------------------------------------------------------- |
-| `-merit`       | Specify either `mAIC`, `AIC`,`AICc` or  `BIC` for partition merging criterion. *DEFAULT: `mAIC`*                                                                       |
-| `--merge`    | Specify either `rcluster` or `greedy` algorithm. *DEFAULT: `rcluster`* |
-| `--rcluster` | Specify the percentage of most similar candidate partition pairs retained for merging at each iteration (relaxed clustering algorithm only). *DEFAULT: 10* |
+PartitionFinder implementation includes four merging algorithms, which differ in how thoroughly they search the space of partitioning schemes and how many pairs they merge per iteration:
 
+| Algorithm                            | IQ-TREE Command | Description                                                                                                                                                | Reference               |
+| ------------------------------------ | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| Greedy                               | `greedy`        | At each iteration, evaluates all candidate subset pairs and merges the single pair that gives the best information-criterion score.                        | [Lanfear et al., 2012]  |
+| Relaxed hierarchical clustering      | `rcluster`      | At each iteration, evaluates only the top k% most similar candidate subset pairs and merges the best-scoring one.                                          | [Lanfear et al., 2014]  |
+| Fast hierarchical relaxed clustering | `rclusterf`     | At each iteration, evaluates only the top k% most similar candidate subset pairs and merges multiple compatible pairs at once. (IQ-TREE default).          | [Lanfear et al., 2014]  |
+| k-means                              | `kmeans`        | Estimates an evolutionary rate for each site, then iteratively clusters individual sites by rate using k-means, without relying on predefined data blocks. | [Frandsen et al., 2015] |
+
+The following options control the details of the merging procedure:
+
+| Option           | Description                                                                                                                                                                                                                                            |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `-merit`         | Specify either `mAIC`, `AIC`, `AICc` or `BIC` for the partition merging criterion. *DEFAULT: `mAIC`*                                                                                                                                                   |
+| `--merge`        | Specify either `rclusterf`, `rcluster`, `greedy` or `kmeans` algorithm. *DEFAULT: `rclusterf`*                                                                                                                                                         |
+| `--rclusterf`    | Specify the percentage of most similar candidate partition pairs retained for merging at each iteration (this automatically selects the fast relaxed clustering algorithm). *DEFAULT: 10*                                                              |
+| `--rcluster`     | Specify the percentage of most similar candidate partition pairs retained for merging at each iteration (this automatically selects the relaxed clustering algorithm). *DEFAULT: 10*                                                                   |
+| `--rcluster-max` | Specify the maximum number of most similar candidate partition pairs retained for merging at each iteration (only for the fast relaxed clustering and relaxed clustering algorithms). *DEFAULT: 10 × number of partitions in the full partition model* |
 
 Ultrafast bootstrapping with partition model
 --------------------------------------------
@@ -586,8 +596,9 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Kishino et al., 1990]: https://doi.org/10.1007/BF02109483
 [Kishino and Hasegawa, 1989]: https://doi.org/10.1007/BF02100115
 [Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
-[Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
 [Susko et al., 2026]: https://doi.org/10.1093/sysbio/syag013
+[Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
+[Frandsen et al., 2015]: https://doi.org/10.1186/s12862-015-0283-7
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Nei et al., 2001]: https://doi.org/10.1073/pnas.051611498
 [Seo et al., 2005]: https://doi.org/10.1073/pnas.0408313102
