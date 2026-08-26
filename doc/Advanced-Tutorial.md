@@ -165,7 +165,11 @@ To resemble PartitionFinder and save time:
     iqtree -s example.phy -p example.nex -m TESTMERGEONLY
     # for version 1.x change -p to -spp
 
-Starting with version 3.1.3, PartitionFinder by default applies the marginal Akaike Information Criterion (mAIC; [Susko et al., 2026]) as the criterion for partition merging. If you use PartitionFinder-mAIC in a publication, please cite:
+Starting with version 3.1.4, PartitionFinder supports the marginal Akaike Information Criterion (mAIC; [Susko et al., 2026]) as an optional criterion for partition merging. To apply PartitionFinder-mAIC:
+
+    iqtree -s example.phy -p example.nex -m MFP+MERGE -merit mAIC
+
+If you use PartitionFinder-mAIC in a publication, please cite:
 > TBD
 
 PartitionFinder implementation includes four merging algorithms, which differ in how thoroughly they search the space of partitioning schemes and how many pairs they merge per iteration:
@@ -181,7 +185,7 @@ The following options control the details of the merging procedure:
 
 | Option           | Description                                                                                                                                                                                                                                            |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `-merit`         | Specify either `mAIC`, `AIC`, `AICc` or `BIC` for the partition merging criterion. *Defaults to `mAIC` when `MERGE` is enabled; defaults to `BIC` for stardard model selection.*                                                                       |
+| `-merit`         | Specify either `AIC`, `AICc`, `BIC` or  `mAIC` for the partition merging criterion. *DEFAULT:  `BIC`*                                                                                                                                                  |
 | `--merge`        | Specify either `rclusterf`, `rcluster`, `greedy` or `kmeans` algorithm. *DEFAULT: `rclusterf`*                                                                                                                                                         |
 | `--rclusterf`    | Specify the percentage of most similar candidate partition pairs retained for merging at each iteration (this automatically selects the fast relaxed clustering algorithm). *DEFAULT: 10*                                                              |
 | `--rcluster`     | Specify the percentage of most similar candidate partition pairs retained for merging at each iteration (this automatically selects the relaxed clustering algorithm). *DEFAULT: 10*                                                                   |
