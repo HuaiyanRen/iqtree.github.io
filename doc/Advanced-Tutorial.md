@@ -172,24 +172,7 @@ Starting with version 3.1.4, PartitionFinder supports the marginal Akaike Inform
 If you use PartitionFinder-mAIC in a publication, please cite:
 > TBD
 
-PartitionFinder implementation includes four merging algorithms, which differ in how thoroughly they search the space of partitioning schemes and how many pairs they merge per iteration:
-
-| Algorithm                            | IQ-TREE Command | Description                                                                                                                                                | Reference               |
-| ------------------------------------ | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| Greedy                               | `greedy`        | At each iteration, evaluates all candidate subset pairs and merges the single pair that gives the best information-criterion score.                        | [Lanfear et al., 2012]  |
-| Relaxed hierarchical clustering      | `rcluster`      | At each iteration, evaluates only the top k% most similar candidate subset pairs and merges the best-scoring one.                                          | [Lanfear et al., 2014]  |
-| Fast hierarchical relaxed clustering | `rclusterf`     | At each iteration, evaluates only the top k% most similar candidate subset pairs and merges multiple compatible pairs at once. (IQ-TREE default).          | [Lanfear et al., 2014]  |
-| k-means                              | `kmeans`        | Estimates an evolutionary rate for each site, then iteratively clusters individual sites by rate using k-means, without relying on predefined data blocks. | [Frandsen et al., 2015] |
-
-The following options control the details of the merging procedure:
-
-| Option           | Description                                                                                                                                                                                                                                            |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `-merit`         | Specify either `AIC`, `AICc`, `BIC` or  `mAIC` for the partition merging criterion. *DEFAULT:  `BIC`*                                                                                                                                                  |
-| `--merge`        | Specify either `rclusterf`, `rcluster`, `greedy` or `kmeans` algorithm. *DEFAULT: `rclusterf`*                                                                                                                                                         |
-| `--rclusterf`    | Specify the percentage of most similar candidate partition pairs retained for merging at each iteration (this automatically selects the fast relaxed clustering algorithm). *DEFAULT: 10*                                                              |
-| `--rcluster`     | Specify the percentage of most similar candidate partition pairs retained for merging at each iteration (this automatically selects the relaxed clustering algorithm). *DEFAULT: 10*                                                                   |
-| `--rcluster-max` | Specify the maximum number of most similar candidate partition pairs retained for merging at each iteration (only for the fast relaxed clustering and relaxed clustering algorithms). *DEFAULT: 10 × number of partitions in the full partition model* |
+The PartitionFinder implementation includes several algorithms. The options for controlling the details of partitioning scheme selection are documented in the [Automatic model selection](https://iqtree.github.io/doc/Command-Reference#automatic-model-selection) section of the Command Reference.
 
 Ultrafast bootstrapping with partition model
 --------------------------------------------
