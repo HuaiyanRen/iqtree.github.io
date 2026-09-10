@@ -170,7 +170,7 @@ Starting with version 3.1.4, PartitionFinder supports the marginal Akaike Inform
     iqtree -s example.phy -p example.nex -m MFP+MERGE -merit mAIC
 
 If you use PartitionFinder-mAIC in a publication, please cite:
-> TBD
+> __H. Ren, T.K.F. Wong, C. Jiang, E. Susko, R. Lanfear, B.Q. Minh__ (2026) PartitionFinder-mAIC: Phylogenetic Partitioning using Marginal Akaike Information Criterion _bioRxiv_. <https://doi.org/10.64898/2026.09.04.749328>
 
 The PartitionFinder implementation includes several algorithms. The options for controlling the details of partitioning scheme selection are documented in the [Automatic model selection](https://iqtree.github.io/doc/Command-Reference#automatic-model-selection) section of the Command Reference.
 
