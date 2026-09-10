@@ -585,7 +585,6 @@ See [Command Reference](Command-Reference) for a complete list of all options av
 [Lanfear et al., 2012]: https://doi.org/10.1093/molbev/mss020
 [Susko et al., 2026]: https://doi.org/10.1093/sysbio/syag013
 [Lanfear et al., 2014]: https://doi.org/10.1186/1471-2148-14-82
-[Frandsen et al., 2015]: https://doi.org/10.1186/s12862-015-0283-7
 [Lopez et al., 2002]: http://mbe.oxfordjournals.org/content/19/1/1.full
 [Nei et al., 2001]: https://doi.org/10.1073/pnas.051611498
 [Seo et al., 2005]: https://doi.org/10.1073/pnas.0408313102
